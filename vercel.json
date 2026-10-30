@@ -1,0 +1,27 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(self), microphone=(), display-capture=(self), fullscreen=(self)"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://*.peerjs.com wss://*.peerjs.com; frame-src https://www.youtube.com https://www.instagram.com https: http:; object-src 'none'; base-uri 'self';"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/tahta", "destination": "/index.html" },
+    { "source": "/gonder", "destination": "/index.html" },
+    { "source": "/giris", "destination": "/index.html" },
+    { "source": "/kayit", "destination": "/index.html" },
+    { "source": "/g/(.*)", "destination": "/index.html" }
+  ]
+}

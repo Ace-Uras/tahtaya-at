@@ -1,0 +1,8 @@
+server.py
+baslat.bat
+api/
+veri/
+.vercel/
+__pycache__/
+*.pyc
+.env*

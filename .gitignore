@@ -1,0 +1,4 @@
+﻿veri/
+__pycache__/
+*.pyc
+.vercel/

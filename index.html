@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tahtaya At | Akıllı Tahta ve Telefon Köprüsü</title>
+  <meta name="description" content="Telefonundaki PDF, fotoğraf, video ve canlı ekranı saniyeler içinde akıllı tahtaya yansıt. Kurulum ve üyelik gerekmez.">
+  <meta name="theme-color" content="#0B0F14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/stil.css?v=3">
+</head>
+<body>
+
+  <!-- =========================================================
+       1. GİRİŞ / ROL SEÇİM EKRANI (#gorunum-giris)
+       ========================================================= -->
+  <div id="gorunum-giris">
+    <header class="ust-bar">
+      <div class="ust-ic">
+        <a href="?" class="marka">
+          <span class="marka-ikon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </span>
+          <span>Tahtaya At</span>
+        </a>
+        <nav class="ust-nav" aria-label="Bölümler">
+          <a href="#nasil-calisir">Nasıl Çalışır?</a>
+          <a href="?ekran=tahta">Tahta Ekranı</a>
+          <a href="?ekran=telefon">Telefon Bağlantısı</a>
+          <div class="hesap-bar-grup" id="ust-hesap-misafir">
+            <button type="button" class="dugme ikincil kucuk" id="btn-ust-giris">Giriş Yap</button>
+            <button type="button" class="dugme kucuk" id="btn-ust-kayit">Hesap Oluştur</button>
+          </div>
+          <div class="hesap-bar-grup" id="ust-hesap-kullanici" hidden>
+            <span class="kullanici-rozet" id="ust-kullanici-etiket">Öğretmen</span>
+            <button type="button" class="dugme ikincil kucuk" id="btn-ust-cikis">Çıkış Yap</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="giris-kapsayici">
+      <section class="kahraman-izgara">
+        <div>
+          <span class="etiket-rozet">Kurulum Yok · Üyelik Yok · Doğrudan P2P Aktarım</span>
+          <h1 class="kahraman-baslik">Telefonundaki dosyayı ve ekranı <em>saniyeler içinde</em> tahtaya yansıt</h1>
+          <p class="kahraman-aciklama">WhatsApp Web açmak veya kablo aramak yok. Akıllı tahtadaki QR kodu okut; PDF, fotoğraf, video, canlı kamera veya telefon ekranındaki çizimlerin anında tahtada açılsın.</p>
+
+          <div class="rol-kartlari">
+            <button type="button" class="rol-tahta-btn" id="btn-tahta-baslat">
+              <span class="rol-tahta-ikon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </span>
+              <span class="rol-tahta-metin">
+                <b>Tahtadayım (Tahta Ekranını Aç)</b>
+                <span>Bu cihazı akıllı tahta sahnesi olarak başlat ve QR kod üret</span>
+              </span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+
+            <form class="rol-telefon-kart" id="giris-kod-form" novalidate>
+              <label for="giris-kod-input">Telefondayım / Bilgisayardayım: Tahtadaki 6 haneli kodu yaz</label>
+              <div class="kod-giris-satir">
+                <input id="giris-kod-input" class="kod-input" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000 000" aria-describedby="giris-kod-hata">
+                <button type="submit" class="dugme">Bağlan</button>
+              </div>
+              <p class="hata-metni" id="giris-kod-hata" role="alert"></p>
+            </form>
+          </div>
+        </div>
+
+        <div class="sema-kutu" aria-hidden="true">
+          <div class="sema-ust">
+            <span class="sema-durum"><i></i> Doğrudan WebRTC + Yerel Ağ Köprüsü Aktif</span>
+            <span class="sema-kod">KOD: 482 915</span>
+          </div>
+          <div class="sema-sahne">
+            <div class="sema-tahta-onizleme">
+              <div>
+                <div style="font-size:12px;color:#94A3B8;font-weight:700;margin-bottom:6px">AKILLI TAHTA SAHNESİ</div>
+                <div style="font-size:16px;font-weight:800;color:#F8FAFC;margin-bottom:10px">PDF, Video, Görsel ve Canlı Ekran Çizimi</div>
+                <div style="height:105px;border-radius:8px;background:#16202A;border:1px dashed #334155;display:flex;align-items:center;justify-content:center;color:#FDBA74;font-size:13px;font-weight:700;padding:12px;text-align:center">
+                  Telefonda açtığın PDF sayfası, kamera görüntüsü veya parmakla yaptığın çizim anında burada
+                </div>
+              </div>
+              <div class="sema-etiketler">
+                <span>PDF Sayfa Kontrolü</span>
+                <span>Canlı Kamera &amp; Ekran</span>
+                <span>Lazer &amp; Kalem</span>
+                <span>Toplu ZIP İndir</span>
+              </div>
+            </div>
+            <div class="sema-telefon-onizleme">
+              <div style="font-size:11px;font-weight:800;color:#EA580C;text-align:center;padding-bottom:6px;border-bottom:1px solid #E2E8F0">TELEFON KUMANDASI</div>
+              <div style="display:flex;flex-direction:column;gap:6px;my:auto">
+                <div style="background:#FFF7ED;border:1px solid #FDBA74;border-radius:6px;padding:8px 6px;font-size:11px;font-weight:700;text-align:center">Foto / Video / PDF Seç</div>
+                <div style="background:#F1F5F9;border-radius:6px;padding:8px 6px;font-size:11px;font-weight:700;text-align:center">Canlı Ekran &amp; Çizim</div>
+                <div style="background:#0F172A;color:#FFF;border-radius:6px;padding:8px 6px;font-size:11px;font-weight:700;text-align:center">‹ Sayfa Kumandası ›</div>
+              </div>
+              <div style="height:4px;width:44px;background:#CBD5E1;border-radius:2px;margin:6px auto 0"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bolum-kutu" id="nasil-calisir">
+        <h2 class="bolum-baslik">4 Adımda Akıllı Tahta ve Telefon Bağlantısı</h2>
+        <div class="adim-izgara">
+          <article class="adim-kart">
+            <span class="adim-no">01</span>
+            <h3>Tahtada Kodu Aç</h3>
+            <p>Akıllı tahtada "Tahtadayım" düğmesine dokun. Ekranda büyük bir QR kod ve 6 haneli oda kodu oluşur.</p>
+          </article>
+          <article class="adim-kart">
+            <span class="adim-no">02</span>
+            <h3>Telefonla QR Okut</h3>
+            <p>Telefon kamerasıyla QR kodu okut ya da 6 haneli kodu gir. Uygulama indirmeden saniyesinde eşleşir.</p>
+          </article>
+          <article class="adim-kart">
+            <span class="adim-no">03</span>
+            <h3>PDF, Video veya Ekran Yansıt</h3>
+            <p>Galeriden fotoğraf/video, dosyalardan PDF seç ya da "Canlı Ekran &amp; Kamera" sekmesiyle görüntüyü doğrudan yansıt.</p>
+          </article>
+          <article class="adim-kart">
+            <span class="adim-no">04</span>
+            <h3>Kumanda Et ve Çiz</h3>
+            <p>Telefon ekranından sayfaları değiştir, yakınlaştır, kalem/lazer ile işaretleme yap veya dosyaları ZIP olarak tahtaya indir.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       1B. GİRİŞ YAP VE HESAP OLUŞTUR EKRANI (#gorunum-hesap)
+       ========================================================= -->
+  <div id="gorunum-hesap" hidden>
+    <header class="ust-bar">
+      <div class="ust-ic">
+        <a href="?" class="marka">
+          <span class="marka-ikon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </span>
+          <span>Tahtaya At</span>
+        </a>
+        <button type="button" class="dugme ikincil kucuk" id="btn-hesap-geri">← Ana Sayfaya Dön</button>
+      </div>
+    </header>
+
+    <main class="hesap-kapsayici">
+      <section class="hesap-kart" aria-label="Kullanıcı Girişi ve Kayıt">
+        <div class="hesap-baslik-kutu">
+          <span class="etiket-rozet" style="margin-bottom:10px">Şifreli Oturum · PBKDF2-SHA256 Koruma</span>
+          <h1 id="hesap-ana-baslik">Öğretmen / Kullanıcı Hesabı</h1>
+          <p id="hesap-alt-aciklama">Hesabınla giriş yaptığında telefonun ve açtığın akıllı tahta odaları otomatik olarak eşleşir, onaysız yabancı cihazlar engellenir.</p>
+        </div>
+
+        <div class="hesap-sekme-bar" role="tablist">
+          <button type="button" class="hesap-sekme-btn aktif" id="sekme-btn-giris" role="tab" aria-selected="true">Giriş Yap</button>
+          <button type="button" class="hesap-sekme-btn" id="sekme-btn-kayit" role="tab" aria-selected="false">Hesap Oluştur</button>
+        </div>
+
+        <!-- GİRİŞ FORMU -->
+        <form id="form-hesap-giris" class="hesap-form" novalidate>
+          <div class="alan-grup">
+            <label for="giris-kadi">Kullanıcı Adı veya E-posta</label>
+            <input id="giris-kadi" type="text" class="metin-input" autocomplete="username" maxlength="60" placeholder="ornek@okul.edu.tr veya kullanici_adi" required>
+          </div>
+          <div class="alan-grup">
+            <label for="giris-sifre">Şifre</label>
+            <div class="sifre-satir">
+              <input id="giris-sifre" type="password" class="metin-input" autocomplete="current-password" maxlength="128" placeholder="En az 8 karakterli şifren" required>
+              <button type="button" class="dugme ikincil kucuk sifre-goster-btn" data-hedef="giris-sifre">Göster</button>
+            </div>
+          </div>
+          <p class="hata-metni" id="form-giris-hata" role="alert"></p>
+          <button type="submit" class="dugme" id="btn-form-giris-gonder" style="width:100%">Hesaba Giriş Yap</button>
+        </form>
+
+        <!-- KAYIT FORMU -->
+        <form id="form-hesap-kayit" class="hesap-form" hidden novalidate>
+          <div class="alan-grup">
+            <label for="kayit-ad">Ad ve Soyad</label>
+            <input id="kayit-ad" type="text" class="metin-input" autocomplete="name" maxlength="60" placeholder="Örn: Ahmet Yılmaz" required>
+          </div>
+          <div class="alan-grup">
+            <label for="kayit-kadi">Kullanıcı Adı veya E-posta</label>
+            <input id="kayit-kadi" type="text" class="metin-input" autocomplete="username" maxlength="60" placeholder="ornek@okul.edu.tr veya ahmet_hoca" required>
+          </div>
+          <div class="alan-grup">
+            <label for="kayit-kurum">Okul / Kurum / Branş (İsteğe Bağlı)</label>
+            <input id="kayit-kurum" type="text" class="metin-input" autocomplete="organization" maxlength="80" placeholder="Örn: Atatürk Anadolu Lisesi · Matematik">
+          </div>
+          <div class="alan-grup">
+            <label for="kayit-sifre">Şifre (En az 8 karakter)</label>
+            <div class="sifre-satir">
+              <input id="kayit-sifre" type="password" class="metin-input" autocomplete="new-password" maxlength="128" placeholder="Güçlü bir şifre belirle" required>
+              <button type="button" class="dugme ikincil kucuk sifre-goster-btn" data-hedef="kayit-sifre">Göster</button>
+            </div>
+            <div class="sifre-guc-cubuk" aria-hidden="true"><i id="sifre-guc-ic"></i></div>
+            <small id="sifre-guc-yazi" style="font-size:12px;color:var(--text-muted)">En az 8 karakter, harf ve rakam önerilir</small>
+          </div>
+          <div class="alan-grup">
+            <label for="kayit-sifre-tekrar">Şifre Tekrar</label>
+            <input id="kayit-sifre-tekrar" type="password" class="metin-input" autocomplete="new-password" maxlength="128" placeholder="Şifreni tekrar yaz" required>
+          </div>
+          <p class="hata-metni" id="form-kayit-hata" role="alert"></p>
+          <button type="submit" class="dugme" id="btn-form-kayit-gonder" style="width:100%">Hesap Oluştur ve Başla</button>
+        </form>
+
+        <div class="hesap-alt-ayrac">
+          <span>Sınıf tahtasında şifre girmek istemiyor musun?</span>
+          <div class="ikili-sec-grid" style="margin-top:8px">
+            <button type="button" class="dugme ikincil kucuk" id="btn-hesap-hizli-tahta">Hızlı Tahta Aç (QR)</button>
+            <button type="button" class="dugme ikincil kucuk" id="btn-hesap-hizli-kod">6 Haneli Kodla Katıl</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       2. AKILLI TAHTA SAHNE EKRANI (#gorunum-tahta)
+       ========================================================= -->
+  <div id="gorunum-tahta" class="tahta-kapsayici" hidden>
+    <header class="t-ust">
+      <a href="?" class="marka" style="color:#F8FAFC" title="Ana sayfaya dön">
+        <span class="marka-ikon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </span>
+        <span>Tahtaya At</span>
+      </a>
+
+      <div class="t-durum" id="tahta-durum-rozet" aria-live="polite">
+        <i class="nokta"></i>
+        <span id="tahta-durum-yazi">Oda hazırlanıyor…</span>
+      </div>
+
+      <!-- Tahta Üst Çizim & Lazer Araç Çubuğu -->
+      <div class="t-cizim-araclari" id="tahta-cizim-bar">
+        <button type="button" class="cizim-btn aktif" data-arac="imlec" title="Normal gezinme ve kaydırma modu">İmleç</button>
+        <button type="button" class="cizim-btn" data-arac="kalem" title="Tahta üzerinde kalemle çiz">
+          <span class="renk-nokta" style="background:#EF4444"></span>Kalem
+        </button>
+        <button type="button" class="cizim-btn" data-arac="fosforlu" title="Fosforlu vurgu kalemi">
+          <span class="renk-nokta" style="background:#FACC15"></span>Fosforlu
+        </button>
+        <button type="button" class="cizim-btn" data-arac="lazer" title="Lazer işaretçi">Lazer</button>
+        <button type="button" class="cizim-btn" id="btn-tahta-cizim-temizle" title="Çizimleri temizle">Temizle</button>
+        <button type="button" class="cizim-btn" id="btn-tahta-beyaztahta" title="Boş beyaz tahta sayfası aç">Beyaz Tahta</button>
+      </div>
+
+      <div class="t-bosluk"></div>
+
+      <button type="button" class="kod-rozet-btn" id="btn-ust-kod" title="QR kodu göster/gizle" hidden>000 000</button>
+      <button type="button" class="dugme ikincil kucuk" id="btn-qr-ac">Telefon Bağla (QR)</button>
+      <button type="button" class="dugme ikincil kucuk" id="btn-tahta-tamekran">Tam Ekran</button>
+      <button type="button" class="dugme tehlike kucuk" id="btn-dersi-bitir">Dersi Bitir</button>
+    </header>
+
+    <div class="t-govde">
+      <section class="t-sahne" id="tahta-sahne" aria-label="Gösterilen içerik">
+        <div class="t-icerik" id="tahta-icerik">
+          <div class="t-bos-durum">Telefonundan bir PDF, fotoğraf, video seç ya da canlı ekran başlat; anında burada açılacak.</div>
+        </div>
+
+        <!-- Canlı Senkron Çizim ve Lazer Katmanı -->
+        <canvas id="tahta-cizim-katman" class="t-cizim-katman"></canvas>
+
+        <!-- Önceki / Sonraki Okları -->
+        <button type="button" class="t-ok sol" id="btn-sahne-onceki" aria-label="Önceki" hidden>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="t-ok sag" id="btn-sahne-sonraki" aria-label="Sonraki" hidden>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <!-- Sahne Alt Kontrol Çubuğu -->
+        <div class="t-sahne-alt" id="tahta-alt-cubuk" hidden>
+          <span class="t-sahne-ad" id="sahne-dosya-adi"></span>
+
+          <div class="t-kontrol-grup" id="sahne-sayfa-grup" hidden>
+            <button type="button" class="dugme kucuk" id="btn-sayfa-geri">‹</button>
+            <span id="sahne-sayfa-yazi" style="font-size:13px;font-weight:700;padding:0 6px">Sayfa 1 / 1</span>
+            <button type="button" class="dugme kucuk" id="btn-sayfa-ileri">›</button>
+            <button type="button" class="dugme kucuk" id="btn-pdf-sigdir">Genişliğe Sığdır</button>
+          </div>
+
+          <div class="t-kontrol-grup" id="sahne-yakin-grup" hidden>
+            <button type="button" class="dugme kucuk" id="btn-yakin-eksi">−</button>
+            <button type="button" class="dugme kucuk" id="btn-yakin-sifir">%100</button>
+            <button type="button" class="dugme kucuk" id="btn-yakin-arti">+</button>
+          </div>
+
+          <div class="t-kontrol-grup" id="sahne-don-grup" hidden>
+            <button type="button" class="dugme kucuk" id="btn-don-sol" title="Sola 90 derece döndür">↺ Sol</button>
+            <button type="button" class="dugme kucuk" id="btn-don-sag" title="Sağa 90 derece döndür">Sağ ↻</button>
+          </div>
+
+          <span id="sahne-dosya-sira" style="font-size:13px;color:var(--board-muted);font-weight:600"></span>
+          <button type="button" class="dugme kucuk" id="btn-sahne-telefona" title="Açık dosyayı telefona gönder">Telefona Gönder</button>
+          <button type="button" class="dugme kucuk" id="btn-sahne-yeni-sekme" hidden>Yeni Sekmede Aç</button>
+          <button type="button" class="dugme kucuk" id="btn-sahne-indir" style="background:var(--accent);border-color:var(--accent)">Tahtaya İndir</button>
+        </div>
+
+        <!-- Canlı Kamera / Ekran Yayını Katmanı -->
+        <div class="t-canli-katman" id="tahta-canli-katman" hidden>
+          <video id="tahta-canli-video" autoplay muted playsinline></video>
+          <img id="tahta-canli-resim" alt="Canlı yayın karesi" style="width:100%;height:100%;object-fit:contain" hidden>
+          <div class="t-canli-ust">
+            <span class="canli-rozet"><i></i> CANLI</span>
+            <span id="tahta-canli-etiket" style="font-weight:700;font-size:14px">Telefon Kamerası</span>
+          </div>
+          <div class="t-sahne-alt">
+            <span style="margin-right:auto;font-size:13px;color:var(--board-muted)">Canlı görüntü doğrudan telefondan aktarılıyor</span>
+            <button type="button" class="dugme kucuk" id="btn-canli-dondur">↻ Döndür</button>
+            <button type="button" class="dugme kucuk" id="btn-canli-kare-al">Fotoğraf Olarak Yakala (Kare Al)</button>
+            <button type="button" class="dugme kucuk" id="btn-canli-tamekran">Tam Ekran</button>
+            <button type="button" class="dugme tehlike kucuk" id="btn-canli-kapat">Yayını Bitir</button>
+          </div>
+        </div>
+
+        <!-- Bekleme / QR Kod Katmanı -->
+        <div class="t-bekle-katman" id="tahta-bekle-katman">
+          <div class="t-bekle-kart">
+            <button type="button" class="dugme ikincil kucuk t-bekle-kapat" id="btn-bekle-kapat" hidden>Kapat</button>
+            <div class="t-qr-kutu" id="tahta-qr-kutu" aria-label="Telefonla okutulacak QR kod"></div>
+            <div class="t-bekle-bilgi">
+              <h2>Telefonunla bu tahtaya bağlan</h2>
+              <ol>
+                <li>Telefonunun kamerasını açıp soldaki <b>QR kodu</b> okut.</li>
+                <li>Ya da telefon tarayıcısından <span class="t-baglanti-adresi" id="tahta-adres-metin">...</span> adresine girip şu kodu yaz:</li>
+              </ol>
+              <div class="t-buyuk-kod" id="tahta-buyuk-kod">··· <span>···</span></div>
+              <div style="font-size:14px;color:var(--text-muted)">
+                Uygulama kurulumu veya üyelik gerekmez. PDF, fotoğraf, video, canlı kamera ve ekran çizimi anında açılır.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sağ Yan Panel -->
+      <aside class="t-panel" id="tahta-panel">
+        <div class="t-panel-bolum">
+          <div style="font-size:12px;font-weight:800;color:var(--board-muted);text-transform:uppercase;margin-bottom:8px">Bağlı Cihazlar</div>
+          <div id="tahta-cihaz-listesi">
+            <div style="font-size:13px;color:var(--board-muted)">Henüz bağlı telefon yok</div>
+          </div>
+          <label class="anahtar-satir" style="margin-top:10px">
+            <span>Öğrenciler de gönderebilsin</span>
+            <input type="checkbox" id="chk-ogrenci-modu">
+          </label>
+        </div>
+
+        <div class="t-panel-bolum" id="tahta-onay-bolum" hidden>
+          <div style="font-size:12px;font-weight:800;color:#FBBF24;margin-bottom:8px" id="tahta-onay-baslik">Onay Bekleyenler</div>
+          <ul class="t-dosya-listesi" id="tahta-onay-listesi" style="max-height:140px;padding:0"></ul>
+        </div>
+
+        <div class="t-liste-baslik">
+          <b id="tahta-gelenler-baslik">Gelen Dosyalar (0)</b>
+          <button type="button" id="btn-tumunu-sec">Tümünü seç</button>
+        </div>
+
+        <ul class="t-dosya-listesi" id="tahta-dosya-listesi"></ul>
+
+        <div class="t-panel-alt">
+          <button type="button" class="dugme kucuk" id="btn-secilenleri-indir" disabled>Seçilenleri İndir</button>
+          <label class="anahtar-satir">
+            <span>Gelenleri otomatik kaydet</span>
+            <input type="checkbox" id="chk-oto-kaydet">
+          </label>
+          <div style="border-top:1px solid var(--board-border);padding-top:10px;display:flex;flex-direction:column;gap:6px">
+            <span style="font-size:12px;color:var(--board-muted);font-weight:700">Tahtadan Telefona Gönder:</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+              <label class="dugme ikincil kucuk" style="cursor:pointer;background:var(--board-panel);color:#FFF;border-color:var(--board-border)">
+                Dosya Seç
+                <input type="file" id="input-tahtadan-dosya" multiple hidden>
+              </label>
+              <button type="button" class="dugme ikincil kucuk" id="btn-tahta-ekrangoruntusu" style="background:var(--board-panel);color:#FFF;border-color:var(--board-border)">Sahne Görüntüsü</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <button type="button" class="dugme kucuk sunum-cik-btn" id="btn-sunumdan-cik" hidden>Sunum Modundan Çık</button>
+  </div>
+
+  <!-- =========================================================
+       3. TELEFON / KUMANDA EKRANI (#gorunum-telefon)
+       ========================================================= -->
+  <div id="gorunum-telefon" class="tel-kapsayici" hidden>
+    <header class="tel-ust">
+      <a href="?" class="marka" style="font-size:17px">
+        <span class="marka-ikon" style="width:30px;height:30px" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </span>
+        <span>Tahtaya At</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button type="button" class="dugme ikincil kucuk" id="btn-tel-hesap">Hesap / Giriş</button>
+        <button type="button" class="dugme ikincil kucuk" id="btn-baska-tahta" hidden>Başka Tahta</button>
+      </div>
+    </header>
+
+    <!-- 3A. Kod Girme Kartı -->
+    <main class="tel-govde" id="tel-ekran-kod" hidden>
+      <section class="tel-kart">
+        <h1 style="margin:0 0 8px;font-size:22px;font-weight:800">Akıllı Tahtaya Bağlan</h1>
+        <p style="margin:0 0 16px;font-size:14px;color:var(--text-muted)">Tahta ekranındaki 6 haneli kodu aşağıya yaz. QR kodu kamerayla okuttuysan otomatik bağlanır.</p>
+        <form id="tel-kod-form" novalidate>
+          <div class="kod-giris-satir">
+            <input id="tel-kod-input" class="kod-input" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000 000">
+            <button type="submit" class="dugme">Bağlan</button>
+          </div>
+          <p class="hata-metni" id="tel-kod-hata" role="alert"></p>
+        </form>
+      </section>
+    </main>
+
+    <!-- 3B. Öğrenci Adı Kartı -->
+    <main class="tel-govde" id="tel-ekran-ad" hidden>
+      <section class="tel-kart">
+        <h1 style="margin:0 0 8px;font-size:22px;font-weight:800">Adını Yaz</h1>
+        <p style="margin:0 0 16px;font-size:14px;color:var(--text-muted)">Öğretmenin gönderdiğin dosyayı onaylayıp tahtada açacak.</p>
+        <form id="tel-ad-form" novalidate>
+          <div class="kod-giris-satir">
+            <input id="tel-ogrenci-ad" class="kod-input" style="font-family:var(--font-sans);font-size:17px;letter-spacing:0;text-align:left" maxlength="40" placeholder="Adın ve Soyadın">
+            <button type="submit" class="dugme">Devam</button>
+          </div>
+          <p class="hata-metni" id="tel-ad-hata" role="alert"></p>
+        </form>
+      </section>
+    </main>
+
+    <!-- 3C. Aktif Bağlı Telefon Arayüzü -->
+    <div id="tel-ekran-bagli" hidden>
+      <div class="tel-durum-cubuk" id="tel-baglanti-cubuk">
+        <span id="tel-baglanti-metin">Tahtaya bağlısın</span>
+        <small id="tel-baglanti-kanal" style="font-family:var(--font-mono)">P2P / LAN</small>
+      </div>
+
+      <nav class="tel-sekmeler" id="tel-sekme-bar" role="tablist">
+        <button type="button" class="tel-sekme-btn aktif" data-sekme="gonder">Dosya Gönder</button>
+        <button type="button" class="tel-sekme-btn" data-sekme="yansit">Ekran &amp; Kamera</button>
+        <button type="button" class="tel-sekme-btn" data-sekme="kumanda">Kumanda</button>
+        <button type="button" class="tel-sekme-btn" data-sekme="tahtadan">Tahtadan <span id="tel-gelen-rozet" hidden></span></button>
+      </nav>
+
+      <!-- SEKME 1: DOSYA GÖNDER -->
+      <main class="tel-govde" id="sekme-gonder">
+        <label class="dosya-sec-buyuk">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+          <b>Fotoğraf ya da Video Seç</b>
+          <span>Birden çok seçebilirsin. Seçtiğin anda tahtada açılır.</span>
+          <input type="file" id="input-tel-galeri" accept="image/*,video/*" multiple>
+        </label>
+
+        <div class="ikili-sec-grid">
+          <label class="ikili-sec-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            PDF / Belge Seç
+            <input type="file" id="input-tel-belge" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.html,*/*" multiple>
+          </label>
+          <label class="ikili-sec-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Fotoğraf Çek
+            <input type="file" id="input-tel-kamera" accept="image/*" capture="environment">
+          </label>
+        </div>
+
+        <form class="tel-kart" id="tel-link-form" novalidate style="padding:14px">
+          <label for="tel-link-input" style="display:block;font-weight:700;font-size:14px;margin-bottom:6px">Bağlantı Gönder (YouTube, Instagram, Web)</label>
+          <div class="kod-giris-satir">
+            <input id="tel-link-input" type="url" class="kod-input" style="font-family:var(--font-sans);font-size:14px;letter-spacing:0;text-align:left;height:44px" placeholder="https://www.youtube.com/watch?v=...">
+            <button type="submit" class="dugme kucuk" style="height:44px">Aç</button>
+          </div>
+          <p class="hata-metni" id="tel-link-hata" style="min-height:0;margin-top:4px"></p>
+        </form>
+
+        <ul class="aktarim-listesi" id="tel-gonderilen-listesi"></ul>
+      </main>
+
+      <!-- SEKME 2: CANLI EKRAN & KAMERA YANSITMA -->
+      <main class="tel-govde" id="sekme-yansit" hidden>
+        <!-- Mod A: Canlı Telefon Ekranı / Birebir Senkron Tuval -->
+        <section class="senkron-ekran-kutu">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div>
+              <b style="font-size:15px;display:block">Canlı Telefon Ekranı &amp; Tahta Senkronu</b>
+              <small style="color:#94A3B8;font-size:12px">Burada gördüğün ve çizdiğin her şey anında tahtada görünür</small>
+            </div>
+            <button type="button" class="dugme kucuk" id="btn-tel-beyaztahta">Beyaz Tahta Aç</button>
+          </div>
+
+          <div class="senkron-tuval-sarma" id="tel-senkron-sarma">
+            <canvas id="tel-senkron-arkaplan"></canvas>
+            <canvas id="tel-senkron-cizim"></canvas>
+            <div id="tel-senkron-bos" style="color:#94A3B8;font-size:13px;text-align:center;padding:16px;pointer-events:none">
+              Bir PDF/fotoğraf gönder veya "Beyaz Tahta Aç"a dokun; parmağınla çizdiğin ve işaretlediğin yerler canlı olarak tahtaya yansısın.
+            </div>
+          </div>
+
+          <div class="senkron-araclar" id="tel-cizim-araclari">
+            <button type="button" class="cizim-btn aktif" data-tel-arac="lazer">Lazer</button>
+            <button type="button" class="cizim-btn" data-tel-arac="kalem-kirmizi">
+              <span class="renk-nokta" style="background:#EF4444"></span>Kırmızı
+            </button>
+            <button type="button" class="cizim-btn" data-tel-arac="kalem-mavi">
+              <span class="renk-nokta" style="background:#38BDF8"></span>Mavi
+            </button>
+            <button type="button" class="cizim-btn" data-tel-arac="fosforlu">
+              <span class="renk-nokta" style="background:#FACC15"></span>Fosforlu
+            </button>
+            <button type="button" class="cizim-btn" id="btn-tel-cizim-temizle" style="margin-left:auto">Temizle</button>
+          </div>
+
+          <div class="km-ikili-satir">
+            <button type="button" class="dugme ikincil kucuk" id="btn-senkron-geri" style="background:#1E293B;color:#FFF;border-color:#334155">‹ Önceki Sayfa</button>
+            <button type="button" class="dugme ikincil kucuk" id="btn-senkron-ileri" style="background:#1E293B;color:#FFF;border-color:#334155">Sonraki Sayfa ›</button>
+          </div>
+        </section>
+
+        <!-- Mod B: Canlı Kamera (Tepegöz) & Ekran Paylaşımı -->
+        <section class="tel-kart">
+          <h3 style="margin:0 0 6px;font-size:16px;font-weight:800">Canlı Kamera &amp; Cihaz Ekranı Yayını</h3>
+          <p style="margin:0 0 12px;font-size:13px;color:var(--text-muted)">Telefon kamerasını belge kamerası (tepegöz) gibi tahtaya yansıt veya destekleyen cihazlarda tüm ekranı paylaş.</p>
+
+          <div class="ikili-sec-grid" id="tel-canli-butonlar">
+            <button type="button" class="dugme" id="btn-tel-canli-kamera">Canlı Kamera Aç</button>
+            <button type="button" class="dugme ikincil" id="btn-tel-canli-ekran">Ekranımı Yansıt</button>
+          </div>
+
+          <div id="tel-canli-onizleme-kutu" style="margin-top:12px" hidden>
+            <video id="tel-canli-video" autoplay muted playsinline style="width:100%;max-height:220px;border-radius:10px;background:#000"></video>
+            <div class="ikili-sec-grid" style="margin-top:8px">
+              <button type="button" class="dugme ikincil kucuk" id="btn-tel-kamera-cevir">Kamerayı Çevir</button>
+              <button type="button" class="dugme ikincil kucuk" id="btn-tel-kare-yakala">Tahtada Kare Al</button>
+            </div>
+            <button type="button" class="dugme tehlike kucuk" id="btn-tel-canli-durdur" style="width:100%;margin-top:8px">Canlı Yayını Durdur</button>
+          </div>
+          <p class="hata-metni" id="tel-canli-hata"></p>
+        </section>
+      </main>
+
+      <!-- SEKME 3: KUMANDA -->
+      <main class="tel-govde" id="sekme-kumanda" hidden>
+        <section class="tel-kart" style="text-align:center;padding:14px">
+          <b id="km-aktif-baslik" style="font-size:16px;display:block">Tahtada açık dosya yok</b>
+          <small id="km-aktif-alt" style="color:var(--text-muted);font-size:13px">Dosya Gönder sekmesinden bir PDF, fotoğraf veya video seç.</small>
+        </section>
+
+        <div class="km-ok-grid">
+          <button type="button" class="km-buyuk-btn" id="btn-km-geri">‹ Geri</button>
+          <button type="button" class="km-buyuk-btn ileri" id="btn-km-ileri">İleri ›</button>
+        </div>
+
+        <div class="km-dokunmatik-ped" id="km-dokunmatik-ped">
+          <span id="km-ped-etiket">Sağa/sola kaydırarak sayfa geç · Parmağını gezdirerek tahtada lazer/kaydırma yap</span>
+        </div>
+
+        <div class="km-kontrol-satir">
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-uzaklas">− Uzaklaş</button>
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-yuzde">%100 Sığdır</button>
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-yakinlas">+ Yakınlaş</button>
+        </div>
+
+        <div class="km-ikili-satir">
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-donsol">↺ Sola Döndür</button>
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-donsag">Sağa Döndür ↻</button>
+        </div>
+
+        <button type="button" class="dugme kucuk" id="btn-km-oynat" hidden>Videoyu Oynat / Durdur</button>
+
+        <div class="km-ikili-satir">
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-sunum">Sunum Modu (Tam Ekran)</button>
+          <button type="button" class="dugme ikincil kucuk" id="btn-km-qr">QR Kodu Göster/Gizle</button>
+        </div>
+
+        <button type="button" class="dugme ikincil kucuk" id="btn-km-telefona-al">Açık Dosyayı Telefonuma Al</button>
+
+        <section class="tel-kart" style="padding:14px">
+          <div style="font-weight:800;font-size:14px;margin-bottom:8px" id="km-dosya-liste-baslik">Tahtadaki Dosyalar</div>
+          <ul class="aktarim-listesi" id="km-dosya-listesi"></ul>
+        </section>
+      </main>
+
+      <!-- SEKME 4: TAHTADAN GELENLER -->
+      <main class="tel-govde" id="sekme-tahtadan" hidden>
+        <section class="tel-kart">
+          <p style="margin:0;font-size:13px;color:var(--text-muted)" id="tel-gelen-bos">
+            Tahtadan telefonuna gönderdiğin dosyalar ve tahta ekran görüntüleri burada listelenir.
+          </p>
+          <ul class="aktarim-listesi" id="tel-gelen-listesi" style="margin-top:10px"></ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="bildirim-alani" id="bildirim-alani" aria-live="polite"></div>
+
+  <script src="assets/vendor/qrcode.js"></script>
+  <script src="assets/vendor/peerjs.min.js"></script>
+  <script src="assets/vendor/pdf.min.js"></script>
+  <script src="assets/uygulama.js?v=3"></script>
+</body>
+</html>
